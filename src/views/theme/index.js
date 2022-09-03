@@ -10,7 +10,7 @@ const colors = {
 }
 
 const fonts = {
-  heading: `Poppins, ${base.fonts?.heading}`,
+  heading: `Alliance No 2, ${base.fonts?.heading}`,
   body: `Poppins, ${base.fonts?.body}`,
 }
 

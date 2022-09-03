@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import { Navbar } from '../../components'
+
+const Availability = React.lazy(() => import('../Availability/Availability'))
 
 const Dashboard = () => {
-  return <div>Dashboard</div>
+  return (
+    <>
+      <Navbar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/availability" element={<Availability />} />
+          <Route path="*" element={<div>404</div>} />
+        </Routes>
+      </Suspense>
+    </>
+  )
 }
 
 export default Dashboard
