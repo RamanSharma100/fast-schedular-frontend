@@ -15,23 +15,27 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc'
+import { Link as RouterLink } from 'react-router-dom'
 
 import Logo from '../../assets/brand/logo.png'
+import AuthPageBlob from '../../assets/images/authpageblob.svg'
 
 const Register = () => {
   return (
     <Container size={'sm'}>
       <Box m={8}>
-        <Center>
+        <Center my={4}>
           <VStack spacing={8}>
-            <HStack>
-              <Image src={Logo} alt={'fastschedular logo'} />
-              <Heading color={'brand.50'}>FastSchedular</Heading>
-            </HStack>
+            <Link as={RouterLink} to={'/'} _hover={{ textDecor: 'none' }}>
+              <HStack>
+                <Image src={Logo} alt={'fastschedular logo'} />
+                <Heading color={'brand.50'}>FastSchedular</Heading>
+              </HStack>
+            </Link>
             <Heading size={'md'}>Sign Up for Fast Schedule</Heading>
           </VStack>
         </Center>
-        <Box boxShadow={'lg'} p={[8, 12]} rounded={'md'}>
+        <Box boxShadow={'lg'} p={[8, 12]} bg={'white'} rounded={'md'}>
           <VStack spacing={4}>
             <form>
               <VStack spacing={4}>
@@ -59,7 +63,7 @@ const Register = () => {
             <Heading size={'md'}>OR</Heading>
             <Button
               leftIcon={<FcGoogle />}
-              w={'full'}
+              w={['full', '80%']}
               bg={'white'}
               border={'2px solid gray'}
               _hover={{ opacity: 0.8 }}
@@ -68,13 +72,23 @@ const Register = () => {
             </Button>
             <Text>
               Already have an account?{' '}
-              <Link href={'/login'} color={'brand.50'}>
+              <Link as={RouterLink} to={'/login'} color={'brand.50'}>
                 Login
               </Link>
             </Text>
           </VStack>
         </Box>
       </Box>
+      <Image
+        src={AuthPageBlob}
+        alt={'blob'}
+        w={900}
+        h={900}
+        pos={'absolute'}
+        top={5}
+        left={200}
+        zIndex={-1}
+      />
     </Container>
   )
 }
