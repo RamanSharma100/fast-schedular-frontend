@@ -7,6 +7,8 @@
 
 [Backend](https://github.com/RamanSharma100/fast-schedular-backend)
 
+[Live Site](https://fastschedular.live)
+
 ## Install
 
 ```sh
