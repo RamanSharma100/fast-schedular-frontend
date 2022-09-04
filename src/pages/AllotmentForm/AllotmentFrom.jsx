@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
@@ -12,7 +13,7 @@ const AllotmentFrom = ({ date, time, eventId }) => {
       return toast.error('Please fill all the fields')
     }
     axios
-      .post(`https://api.fastschedular.live/api/event/allot`, {
+      .post(`https://api.fastschedular.live/api/alott/createEvent`, {
         name,
         email,
         description,
