@@ -1,7 +1,5 @@
 import React from 'react'
-
-import { Navbar } from '../../components'
-import Hero from '../../components/home/Hero'
+import { Hero, Navbar } from '../../components/HomeComponents/home'
 
 const Home = () => {
   return (

@@ -4,13 +4,14 @@ const initialState = {
   logged: false,
   authToken: '',
   loading: false,
+  user: null,
 }
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loginAction: (state, action) => {
+    loginAction: (state = initialState, action) => {
       return {
         ...state,
         loading: true,
@@ -38,5 +39,5 @@ const userSlice = createSlice({
 
 const { actions, reducer } = userSlice
 
-export const { loginAction, logoutAction } = actions
+export const { loginAction, logoutAction, loginSuccessAction } = actions
 export default reducer

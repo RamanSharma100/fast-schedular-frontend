@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Box,
   Heading,
@@ -8,9 +7,10 @@ import {
   Spacer,
   useMediaQuery,
 } from '@chakra-ui/react'
+
 import { Link as RouterLink } from 'react-router-dom'
 
-import Logo from '../assets/brand/logo.png'
+import Logo from '../../../assets/brand/logo.png'
 
 const Navbar = () => {
   const [isLessThan768] = useMediaQuery('(max-width: 768px)')
@@ -18,10 +18,10 @@ const Navbar = () => {
   return (
     <Box display={'flex'} justifyContent={'space-between'} p={4} px={12}>
       <Link as={RouterLink} to={'/'} _hover={{ textDecor: 'none' }}>
-        <HStack>
+        <HStack gap={3}>
           <Image src={Logo} alt={'fastschedular logo'} />
           {!isLessThan768 && (
-            <Heading size={'lg'} color={'brand.50'}>
+            <Heading size={'lg'} fontWeight={'bolder'} color={'brand.50'}>
               FastSchedular
             </Heading>
           )}
@@ -52,7 +52,7 @@ const Navbar = () => {
             Get Started
           </Box>
         </Link>
-        <Link as={RouterLink} to={'/dashboard/'} _hover={{ textDecor: 'none' }}>
+        {/* <Link as={RouterLink} to={'/dashboard/'} _hover={{ textDecor: 'none' }}>
           Home
         </Link>
         <Link
@@ -61,7 +61,7 @@ const Navbar = () => {
           _hover={{ textDecor: 'none' }}
         >
           Availability
-        </Link>
+        </Link> */}
       </HStack>
     </Box>
   )

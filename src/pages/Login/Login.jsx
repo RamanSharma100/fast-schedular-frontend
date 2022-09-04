@@ -15,12 +15,47 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc'
-import { Link as RouterLink } from 'react-router-dom'
-
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { loginSuccessAction } from '../../store/reducers/user'
 import Logo from '../../assets/brand/logo.png'
 import AuthPageBlob from '../../assets/images/authpageblob.svg'
+import { toast } from 'react-toastify'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 
 const Register = () => {
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!email || !password) {
+      toast.error('Please fill all the fields')
+      return
+    }
+
+    axios
+      .post('http://localhost:8000/api/auth/login', { email, password })
+      .then((res) => {
+        localStorage.setItem('fs-user', JSON.stringify(res.data))
+        toast.success(res.data.msg)
+        dispatch(
+          loginSuccessAction({
+            logged: true,
+            user: res.data.user,
+            authToken: res.data.token,
+          })
+        )
+        navigate('/dashboard')
+      })
+      .catch((err) => {
+        toast.error(err.response?.data?.msg)
+      })
+  }
   return (
     <Container size={'sm'} h={'100vh'}>
       <Box m={8}>
@@ -32,25 +67,44 @@ const Register = () => {
                 <Heading color={'brand.50'}>FastSchedular</Heading>
               </HStack>
             </Link>
-            <Heading size={'md'}>Welcome back!</Heading>
           </VStack>
         </Center>
-        <Box boxShadow={'lg'} p={[8, 12]} bg={'white'} rounded={'md'}>
-          <VStack spacing={4}>
-            <form>
+        <Box
+          boxShadow={'lg'}
+          mt={55}
+          p={[0, 12]}
+          bg={'white'}
+          rounded={'md'}
+          border={'1px solid rgba(0, 0, 0, 0.1)'}
+        >
+          <VStack spacing={4} px={5}>
+            <Heading size={'md'}>Welcome back!</Heading>
+            <form style={{ width: '100%' }} onSubmit={handleSubmit}>
               <VStack spacing={4}>
                 <FormControl>
                   <FormLabel>Email address</FormLabel>
-                  <Input type={'email'} bg={'#E5ECFE'} />
+                  <Input
+                    type={'email'}
+                    bg={'#E5ECFE'}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel>Password</FormLabel>
-                  <Input type={'password'} bg={'#E5ECFE'} />
+                  <Input
+                    type={'password'}
+                    bg={'#E5ECFE'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </FormControl>
                 <Button
                   bg={'brand.50'}
                   color={'white'}
                   _hover={{ opacity: 0.8 }}
+                  width={'100%'}
+                  type={'submit'}
                 >
                   Login
                 </Button>

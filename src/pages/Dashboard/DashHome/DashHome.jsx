@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@chakra-ui/react'
 
 const DashHome = () => {
-  return <Box></Box>
+  return <Box>Hello World</Box>
 }
 
 export default DashHome

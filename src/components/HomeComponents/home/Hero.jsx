@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 
-import Blob from '../../assets/images/blob.svg'
+import Blob from '../../../assets/images/blob.svg'
 
 const Hero = () => {
   return (
