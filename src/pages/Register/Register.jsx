@@ -159,7 +159,7 @@ const Register = () => {
             <Heading size={'md'}>OR</Heading>
             <Button
               leftIcon={<FcGoogle />}
-              w={['full', '80%']}
+              w={'full'}
               bg={'white'}
               border={'2px solid gray'}
               _hover={{ opacity: 0.8 }}

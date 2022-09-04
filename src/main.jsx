@@ -7,7 +7,7 @@ import theme from './views/theme'
 
 import 'react-toastify/dist/ReactToastify.css'
 
-import { store } from './store/store'
+import store from './redux/store'
 import { Provider } from 'react-redux'
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'

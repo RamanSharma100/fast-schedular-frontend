@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react'
 import { useDispatch } from 'react-redux'
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import { loginSuccessAction, logoutAction } from './store/reducers/user'
+import { toast, ToastContainer } from 'react-toastify'
+import { loginUser, logoutUser } from './redux/actions/authActions'
 
 // pages
 const Home = React.lazy(() => import('./pages/Home/Home'))
@@ -22,7 +22,7 @@ const App = () => {
 
     // check if token not present
     if (!user) {
-      return
+      return console.log(user)
     }
 
     // check Token expiry
@@ -32,30 +32,28 @@ const App = () => {
 
     if (now > expiry) {
       localStorage.removeItem('fs-user')
-      dispatch(logoutAction())
+      dispatch(logoutUser())
       return
     }
 
-    if (user && user.authToken) {
+    if (user && user.token) {
       dispatch(
-        loginSuccessAction({
-          logged: true,
-          user: user.user,
-          authToken: user.authToken,
-        })
-      )
-      navigate('/dashboard')
-    }
-
-    if (user) {
-      dispatch(
-        loginSuccessAction({
+        loginUser({
           logged: true,
           user: user.user,
           authToken: user.token,
         })
       )
-      navigate('/dashboard')
+    }
+
+    if (user) {
+      dispatch(
+        loginUser({
+          logged: true,
+          user: user.user,
+          authToken: user.token,
+        })
+      )
     }
   }, [])
 

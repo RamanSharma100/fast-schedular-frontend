@@ -16,12 +16,12 @@ import {
 } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
-import { loginSuccessAction } from '../../store/reducers/user'
 import Logo from '../../assets/brand/logo.png'
 import AuthPageBlob from '../../assets/images/authpageblob.svg'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
+import { loginUser } from '../../redux/actions/authActions'
 
 const Register = () => {
   const [email, setEmail] = React.useState('')
@@ -41,10 +41,13 @@ const Register = () => {
     axios
       .post('http://localhost:8000/api/auth/login', { email, password })
       .then((res) => {
-        localStorage.setItem('fs-user', JSON.stringify(res.data))
+        localStorage.setItem(
+          'fs-user',
+          JSON.stringify({ token: res.data.token, user: res.data.user })
+        )
         toast.success(res.data.msg)
         dispatch(
-          loginSuccessAction({
+          loginUser({
             logged: true,
             user: res.data.user,
             authToken: res.data.token,
@@ -113,7 +116,7 @@ const Register = () => {
             <Heading size={'md'}>OR</Heading>
             <Button
               leftIcon={<FcGoogle />}
-              w={['full', '80%']}
+              w={'full'}
               bg={'white'}
               border={'2px solid gray'}
               _hover={{ opacity: 0.8 }}
