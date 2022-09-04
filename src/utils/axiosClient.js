@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:8000/',
+  baseURL: 'https://api.fastschedular.live/',
 })
 
 //All request will wait 2 seconds before timeout

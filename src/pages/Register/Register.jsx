@@ -87,7 +87,7 @@ const Register = () => {
     }
 
     axios
-      .post('http://localhost:8000/api/auth/register', data)
+      .post('https://api.fastschedular.live/api/auth/register', data)
       .then((res) => {
         toast.success(res.data.msg)
         navigate('/login')

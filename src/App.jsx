@@ -13,6 +13,10 @@ const Register = React.lazy(() => import('./pages/Register/Register'))
 
 const Dashboard = React.lazy(() => import('./pages/Dashboard/Dashboard'))
 
+const AllotSchedules = React.lazy(() =>
+  import('./pages/AllotSchedules/AllotSchedules')
+)
+
 const App = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -67,7 +71,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
-
+          <Route path="/event/:eventId" element={<AllotSchedules />} />
           <Route path="*" element={<div>404</div>} />
         </Routes>
       </Suspense>

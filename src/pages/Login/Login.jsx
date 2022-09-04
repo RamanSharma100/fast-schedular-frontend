@@ -39,7 +39,10 @@ const Register = () => {
     }
 
     axios
-      .post('http://localhost:8000/api/auth/login', { email, password })
+      .post('https://api.fastschedular.live/api/auth/login', {
+        email,
+        password,
+      })
       .then((res) => {
         localStorage.setItem(
           'fs-user',
